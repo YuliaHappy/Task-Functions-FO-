@@ -3,32 +3,24 @@ function Jar() {
 }
 
 Jar.prototype.add = function(amount, type) { 
-  var fruit = this.fruits.filter(
-    function(element, index, array) {
-      return element.name == type;
-    });
-  if (fruit.length == 0) { 
-    this.fruits.push(
-    {
-      name: type,
-      count: amount
+  if (this.fruits.find(function(element) {
+    if (element.name == type) {
+      element.count += amount;
+      return true;
     }
-    ); 
-  } else {  
-    fruit[0].count += amount;
-  }
+    return false;
+  }) === undefined) {
+    this.fruits.push({
+      name: type,
+      count: amount}); 
+  } 
 };
 
 Jar.prototype.getTotalAmount = function() { 
-  if (this.fruits.lenght == 0) {
-    return 0;
-  }
   var total = 0;
-  this.fruits.forEach(
-    function(element, index) {
-      total += element.count;
-    }
-    );
+  this.fruits.map(function(fruit) {
+      total += fruit.count;
+  });
   return total;
 
 };

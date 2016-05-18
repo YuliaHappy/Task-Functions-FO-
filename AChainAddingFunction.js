@@ -2,7 +2,7 @@ function add(value) {
   var subAdd = function(num) {
     return add(value + num);
   }; 
-  subAdd.toString = function() {
+  subAdd.valueOf = function() {
     return value;
   };
   return subAdd; 

@@ -6,28 +6,26 @@ var Cat = (function() {
     if (name == undefined || weight == undefined) {
       throw("Name or weight is null!");
     }
-    this._name = name;
-    this._weight = weight;
     countInstances += 1;
     sumWeight += weight;
    
     Object.defineProperty(this, "weight", {
       get: function() {
-        return this._weight;
+        return weight;
       },
-      set: function(weight) {
-        sumWeight -= this._weight - weight;
-        this._weight= weight;
+      set: function(w) {
+        sumWeight -= weight - w;
+        weight= w;
         
       }
     });
 
     Object.defineProperty(this, "name", {
       get: function() {
-        return this._name;
+        return name;
       },
-      set: function(name) {
-        this._name= name;
+      set: function(n) {
+        name= n;
       }
     });
   }

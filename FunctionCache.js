@@ -5,6 +5,7 @@ function cache(func) {
     if (key in _cache) {
     	return _cache[key];
     }
-    return _cache[key] = func.apply(null, arguments);
+    _cache[key] = func.apply(null, arguments);
+    return _cache[key];
   };
 }

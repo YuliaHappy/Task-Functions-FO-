@@ -1,15 +1,14 @@
 function createSecretHolder(secret) {
-  function SecretHolder() {
-    this._secret  = secret;
+  getSecret = function() {
+    return secret;
   };
 
-  SecretHolder.prototype.getSecret = function() {
-    return this._secret;
-  };
-
-  SecretHolder.prototype.setSecret = function(secr) {
-    this._secret = secr;
+  setSecret = function(secr) {
+    secret = secr;
   }; 
 
-  return new SecretHolder();
+  return {
+    getSecret: getSecret,
+    setSecret: setSecret
+  };
 }
