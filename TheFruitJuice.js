@@ -6,7 +6,7 @@ Jar.prototype.add = function(amount, type) {
   var fruit = this.fruits.find(function(element) {
    return element.name == type;
   });
-  if (fruit === undefined) {
+  if (!fruit) {
     this.fruits.push({
       name: type,
       count: amount}); 
@@ -26,14 +26,13 @@ Jar.prototype.getConcentration = function(type) {
   if (this.getTotalAmount() == 0) {
     return 0;
   } 
-  var fruit = this.fruits.filter(
-    function(element, index, array) {
+  var fruit = this.fruits.find(function(element) {
       return element.name == type;
     });
-  if (fruit.length == 0) {
+  if (!fruit) {
     return 0;
   }
-  return fruit[0].count / this.getTotalAmount();
+  return fruit.count / this.getTotalAmount();
 };
 
 Jar.prototype.pourOut = function(amount) { 
