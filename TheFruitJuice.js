@@ -3,26 +3,23 @@ function Jar() {
 }
 
 Jar.prototype.add = function(amount, type) { 
-  if (this.fruits.find(function(element) {
-    if (element.name == type) {
-      element.count += amount;
-      return true;
-    }
-    return false;
-  }) === undefined) {
+  var fruit = this.fruits.find(function(element) {
+   return element.name == type;
+  });
+  if (fruit === undefined) {
     this.fruits.push({
       name: type,
       count: amount}); 
-  } 
+  } else {
+    fruit.count += amount;
+  }
 };
 
-Jar.prototype.getTotalAmount = function() { 
-  var total = 0;
-  this.fruits.map(function(fruit) {
-      total += fruit.count;
-  });
-  return total;
-
+Jar.prototype.getTotalAmount = function() {
+  return this.fruits.reduce(function(prev, fruit) {
+    prev += fruit.count;
+    return prev;
+  }, 0);
 };
 
 Jar.prototype.getConcentration = function(type) { 

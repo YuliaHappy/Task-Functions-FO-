@@ -4,8 +4,8 @@ function partitionOn(pred, items) {
     	function(element) {
         	return !pred(element);
     });
-    items.splice(0, items.length)
-    	.push.apply(items, 
-    		fArray.concat(tArray));
+    var emptyItems = items.splice(0, items.length);
+    var resultArr = fArray.concat(tArray);
+    emptyItems.push.apply(items, resultArr);
     return fArray.length;
 }
